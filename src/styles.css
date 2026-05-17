@@ -152,6 +152,16 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+
+  /* FitXperience brand (dark) — neon lime over black */
+  --brand: oklch(0.92 0.2 120);
+  --brand-foreground: oklch(0.1 0 0);
+  --brand-glow: oklch(0.92 0.2 120 / 35%);
+  --surface: oklch(0.16 0.005 270);
+  --elevated: oklch(0.2 0.008 270);
+  --success: oklch(0.74 0.17 150);
+  --warning: oklch(0.78 0.16 75);
+  --danger: oklch(0.7 0.2 27);
 }
 
 @layer base {
