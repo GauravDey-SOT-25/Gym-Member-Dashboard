@@ -1,109 +1,133 @@
-# Gym Member Dashboard — Team Scaffold
+# FitXperience — Gym Member Dashboard (Team Scaffold)
 
-A **basic working layout** for the Gym Member Dashboard project. This scaffold
-is intentionally minimal so every team member can start building their own
-module on top of a shared structure without merge conflicts.
+Working layout for the **Gym Member Dashboard** group project, structured to
+match the 5-section blueprint and to give **every one of the 19 roles** a
+visible, named workspace inside the running app.
 
-> Stack: React + TanStack Router + TypeScript + Vite (already configured).
-> Run with the standard dev server — see `package.json`.
+Stack: React 19 + TanStack Start + TypeScript + Vite + Tailwind v4.
 
 ---
 
-## How the project is split
+## 1. Blueprint → Route map
 
-All UI lives in **`src/routes/index.tsx`** for now. Each section is wrapped in
-a clearly labeled comment block like:
+| # | Blueprint section       | Route        | File                          |
+|---|--------------------------|--------------|-------------------------------|
+| 1 | Central Hub (Home)       | `/`          | `src/routes/index.tsx`        |
+| 2 | Sensory Analytics (Data) | `/data`      | `src/routes/data.tsx`         |
+| 3 | Membership Boutique (Plan)| `/plan`     | `src/routes/plan.tsx`         |
+| 4 | Rewards Odyssey (Perks)  | `/perks`     | `src/routes/perks.tsx`        |
+| 5 | Personal Command (Edit)  | `/edit`      | `src/routes/edit.tsx`         |
+
+The bottom **Floating Dock** (`src/components/floating-dock.tsx`) navigates
+between all five.
+
+---
+
+## 2. The `<RoleSlot/>` workspace marker
+
+Every developer-owned block in the app is wrapped with a `<RoleSlot/>` so
+the workspace is **visible in the running UI**, not just in code comments.
 
 ```tsx
-/* [ROLE #4 - Membership Cards Developer] */
-<div data-section="membership-cards"> ... </div>
+<RoleSlot role={6} name="Line Chart Developer" area="Activity Intensity">
+  {/* ROLE #6 builds the smooth spline chart here */}
+</RoleSlot>
 ```
 
-When you start your work, **move your section into its own component file**
-inside `src/components/<your-role>/`. Keep the role tag in a header comment
-so reviewers know who owns the code.
+- Dashed border = placeholder (`status="todo"`, default)
+- Solid border  = implemented (`status="done"`)
+- Header always shows `ROLE #N · name · area`
 
-Shared design tokens live in the `T` constant at the top of `index.tsx`
-(owned by Role #1 / Role #11). Do not hardcode colors elsewhere.
-
----
-
-## Role → Code map
-
-### Frontend roles
-
-| # | Role | Files / sections to own |
-|---|------|------------------------|
-| 1 | Frontend Lead | Whole `src/`, the `T` design tokens, folder structure, code review |
-| 2 | Navigation & Routing | `<aside>` sidebar + `tab` state + future routes in `src/routes/` |
-| 3 | Dashboard Layout | Grid in `Dashboard()`, sidebar, top header |
-| 4 | Membership Cards | `data-section="membership-cards"` block in `OverviewTab` |
-| 5 | Statistics Widgets | `data-section="stats-widgets"` block in `OverviewTab` |
-| 6 | Line Chart | `ChartPlaceholder kind="line"` in `AnalyticsTab` (integrate Chart.js) |
-| 7 | Doughnut / Pie Chart | `ChartPlaceholder kind="doughnut"` in `AnalyticsTab` |
-| 8 | Real-Time Data Simulation | `useEffect` + `setInterval` block in `Dashboard()` |
-| 9 | Dataset Toggle & State | `data-section="dataset-toggle"` in `AnalyticsTab` |
-| 10 | Loading States & Skeleton UI | Add `<Skeleton/>` variants next to primitives at bottom of file |
-| 11 | Theme & Dark Mode | `dark` state + `T` palette + topbar toggle |
-| 12 | Settings Panel | `SettingsTab` component |
-| 13 | Responsive Design | Wrap grids with media queries; convert inline styles to CSS modules / Tailwind |
-| 14 | UI Animation & Transition | Hover handlers on `Card`, tab transitions, chart entry animations |
-| 15 | Accessibility & UX | aria labels, focus rings, keyboard nav for sidebar/toggle/tabs |
-| 16 | Error Handling & Empty States | Add fallback UI inside `ChartPlaceholder`, `Card`, etc. |
-| 17 | Frontend Testing & Integration | Add tests under `src/__tests__/`; final QA pass |
-
-### Backend (mock) roles
-
-| # | Role | Where to work |
-|---|------|---------------|
-| 18 | Mock API & Data Architecture | Create `src/lib/mock/` with `members.ts`, `analytics.ts`, `rewards.ts` |
-| 19 | Backend Simulation & Integration Support | Create `src/lib/mock/api.ts` with fake `async` + delays; hook into Role #8 |
+Search the repo for `RoleSlot role={N}` to find every workspace owned by a role.
 
 ---
 
-## Section ↔ Tab map (matches the blueprint)
+## 3. Role → File map (all 19 roles)
+
+### Frontend
+
+| #  | Role                              | Where they work                                                                 |
+|----|-----------------------------------|---------------------------------------------------------------------------------|
+| 1  | Frontend Lead Developer           | `src/styles.css` tokens, `src/components/role-slot.tsx`, code review, merges    |
+| 2  | Navigation & Routing              | `src/components/floating-dock.tsx`, `src/routes/__root.tsx`                     |
+| 3  | Dashboard Layout                  | `src/components/app-shell.tsx`, welcome banners on every route                  |
+| 4  | Membership Cards                  | Orbs on `/`, member card + bookings on `/plan`, reward tiles on `/perks`        |
+| 5  | Statistics Widgets                | Live orbs on `/`, billing timeline on `/plan`, points activity on `/perks`      |
+| 6  | Line Chart                        | Activity Intensity chart on `/data`, progress path on `/perks`                  |
+| 7  | Doughnut / Pie Chart              | Facility heatmap + Muscle Group Radar on `/data`                                |
+| 8  | Real-Time Data Simulation         | `src/lib/realtime.ts` (only place `setInterval` is allowed)                     |
+| 9  | Dataset Toggle & State            | Range switcher on `/data`, filters on `/perks`                                  |
+| 10 | Loading States & Skeleton UI      | `src/components/skeletons.tsx` (wire into every async slot)                     |
+| 11 | Theme & Dark Mode                 | `src/components/theme-provider.tsx`, theme switcher on `/edit`, topbar toggle   |
+| 12 | Settings Panel                    | All cards on `/edit` (Profile, Sync, Alerts, Danger Zone)                       |
+| 13 | Responsive Design                 | Tailwind breakpoints across every route                                         |
+| 14 | UI Animation & Transition         | Quick Actions on `/`, dock hover, timeline animation, reward unlock             |
+| 15 | Accessibility & UX                | ARIA on dock, switches on `/edit`, focus rings, contrast                        |
+| 16 | Error Handling & Empty States     | `src/components/empty-state.tsx` (wire into every async slot)                   |
+| 17 | Frontend Testing & Integration    | `src/__tests__/` — add Vitest specs per role                                    |
+
+### Backend (mock)
+
+| #  | Role                                       | Where they work                                            |
+|----|--------------------------------------------|------------------------------------------------------------|
+| 18 | Mock API & Data Architecture               | `src/lib/mock/members.ts`, `analytics.ts`, `rewards.ts`    |
+| 19 | Backend Simulation & Integration Support   | `src/lib/mock/api.ts` (async + delays, swap for real API)  |
+
+---
+
+## 4. File tree
 
 ```
-App
- ├── Sidebar             ........... Role #2, #3
- ├── Topbar              ........... Role #3, #11
- ├── Overview tab        ........... Role #3
- │    ├── Welcome Banner ........... Role #3
- │    ├── Membership Cards ......... Role #4
- │    └── Stats Widgets ............ Role #5
- ├── Analytics tab       ........... Role #3
- │    ├── Dataset Toggle ........... Role #9
- │    ├── Line Chart ............... Role #6
- │    └── Doughnut Chart ........... Role #7
- ├── Settings tab        ........... Role #12
- │    ├── Profile ................. Role #12
- │    ├── Notifications ........... Role #12
- │    └── Theme Toggle ............ Role #11
- └── Cross-cutting
-      ├── Real-time sim ........... Role #8
-      ├── Skeletons ............... Role #10
-      ├── Animations .............. Role #14
-      ├── A11y .................... Role #15
-      ├── Errors/Empty ............ Role #16
-      └── Mock API ................ Role #18, #19
+src/
+├── components/
+│   ├── app-shell.tsx        [ROLE #3, #11, #13, #15]
+│   ├── floating-dock.tsx    [ROLE #2, #14, #15]
+│   ├── theme-provider.tsx   [ROLE #11]
+│   ├── role-slot.tsx        [ROLE #1] — workspace marker
+│   ├── skeletons.tsx        [ROLE #10]
+│   ├── empty-state.tsx      [ROLE #16]
+│   └── ui/                  shadcn primitives
+├── lib/
+│   ├── realtime.ts          [ROLE #8]
+│   └── mock/
+│       ├── members.ts       [ROLE #18]
+│       ├── analytics.ts     [ROLE #18]
+│       ├── rewards.ts       [ROLE #18]
+│       └── api.ts           [ROLE #19]
+├── routes/
+│   ├── __root.tsx           shell + providers
+│   ├── index.tsx            Page 1 — Central Hub
+│   ├── data.tsx             Page 2 — Sensory Analytics
+│   ├── plan.tsx             Page 3 — Membership Boutique
+│   ├── perks.tsx            Page 4 — Rewards Odyssey
+│   └── edit.tsx             Page 5 — Personal Command
+└── styles.css               design tokens (brand, surface, etc.)
 ```
 
 ---
 
-## Working agreement
+## 5. Working agreement
 
-1. **Never edit another role's section** without asking — use the `[ROLE #N]` tags to find owners.
-2. **No hardcoded colors.** Always read from the `T` token object (or its replacement once Role #11 migrates to CSS variables).
-3. **No inline `setInterval` outside Role #8's module.** All real-time updates flow through one place.
-4. **Charts use Chart.js** (Role #6/#7). Install via `bun add chart.js react-chartjs-2`.
-5. **Run prettier / the repo's lint** before opening a PR.
-6. Role #1 merges and resolves conflicts.
+1. **Never edit another role's `RoleSlot`** without asking — find the owner via `data-role="N"`.
+2. **No hardcoded colors.** Use Tailwind classes backed by tokens in `src/styles.css`
+   (`bg-brand`, `text-foreground`, `border-border`, `bg-elevated`, …).
+3. **No `setInterval` outside `src/lib/realtime.ts`** — all live updates flow through Role #8.
+4. **Charts = Chart.js / recharts.** Run `bun add chart.js react-chartjs-2` when Role #6/#7 start.
+5. **All data fetch goes through `src/lib/mock/api.ts`** — Role #19 swaps the implementation.
+6. **Mark a slot as `status="done"`** when your block is implemented (solid border).
+7. Role #1 merges PRs and resolves token-level conflicts.
 
 ---
 
-## Next steps for each developer
+## 6. Onboarding (each developer)
 
-- Pull the repo, open `src/routes/index.tsx`, locate your `[ROLE #N]` tag.
-- Extract your block into `src/components/<your-area>/<Component>.tsx`.
-- Import it back into `index.tsx` so the layout still renders.
-- Build out your module per the PRD / design system.
+1. Pull the repo, run the dev server.
+2. Search for `role={YOUR_NUMBER}` — every match is yours to own.
+3. Build your component in `src/components/<your-area>/` and import it
+   into the matching `<RoleSlot/>`.
+4. Flip `status="todo"` to `status="done"` so the dashed border becomes solid.
+5. Open a PR — Role #1 reviews + merges.
+
+The current UI runs end-to-end with mock data, so anyone can demo the full
+five-page flow today, then progressively replace placeholder slots with real
+implementations.
