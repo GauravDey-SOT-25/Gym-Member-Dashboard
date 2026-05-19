@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Dashboard</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+<nav class="mobile-nav">
+  <a class="nav-item active" href="index.html">Overview</a><a class="nav-item" href="analytics.html">Analytics</a><a class="nav-item" href="membership.html">Membership</a><a class="nav-item" href="rewards.html">Rewards</a><a class="nav-item" href="settings.html">Settings</a>
+</nav>
+<div class="app">
+  <aside class="sidebar"><div class="logo">GYM<span>.</span></div><nav class="nav"><a class="nav-item active" href="index.html">Overview</a><a class="nav-item" href="analytics.html">Analytics</a><a class="nav-item" href="membership.html">Membership</a><a class="nav-item" href="rewards.html">Rewards</a><a class="nav-item" href="settings.html">Settings</a><a class="nav-item logout" href="#">Logout</a></nav></aside>
+  <div class="main">
+    <header class="topbar"><input type="text" placeholder="Search..." class="search"><div class="topbar-right"><div class="notification">🔔</div><div class="avatar"></div></div></header>
+    <main class="content">
+      <section class="welcome"><h1>Welcome Back, User 👋</h1><p>Your fitness journey overview with realtime gym stats.</p></section>
+      <section class="cards">
+        <div class="card"><h3>Active Plan</h3><p class="value">Premium</p><p class="muted">Full gym access</p></div>
+        <div class="card"><h3>Expiry</h3><p class="value">12 Aug</p><p class="muted">2026 renewal</p></div>
+        <div class="card"><h3>Total Sessions</h3><p class="value">48</p><p class="muted">+8 this month</p></div>
+        <div class="card"><h3>Reward Points</h3><p class="value">1200</p><p class="muted">300 to next gift</p></div>
+      </section>
+      <section class="analytics"><div class="card large"><h3>Workout Activity</h3><div class="chart-placeholder"></div></div><div class="card"><h3>Usage</h3><div class="chart-placeholder small"></div></div></section>
+      <section class="actions"><div class="card"><h3>Quick Actions</h3><button class="btn-primary">Book Session</button><button class="btn-secondary">View Plan</button></div></section>
+    </main>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
