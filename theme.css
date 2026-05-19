@@ -1,0 +1,74 @@
+:root {
+  /* background colors */
+  --bg-primary: #000000;
+  --bg-secondary: #1a1a1a;
+  --bg-surface: #222222;
+  --bg-card: #1e1e1e;
+  --bg-input: #2a2a2a;
+
+  /* Accents colors */
+  --accent-primary: #d9ff00;
+  --border-default: #333333;
+
+  /* text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #cfcfcf;
+  --text-muted: #8a8a8a;
+  --text-disabled: #666666;
+
+  /* Extra colors */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-analytics-blue: #3b82f6;
+  --color-rewards-purple: #8b5cf6;
+
+  /* fonts */
+  --font-heading: "Lexend", sans-serif;
+  --font-body: "Manrope", sans-serif;
+
+  /* text heading */
+  --text-dashboard-heading: 48px;
+  --text-section-heading: 32px;
+  --text-card-heading: 22px;
+
+  /* text sizes */
+  --text-widget-number: 28px;
+  --text-body: 16px;
+  --text-caption: 14px;
+
+  --text-small-label: 12px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* spacing */
+  --space-tight: 8px;
+  --space-component: 16px;
+  --space-card: 24px;
+  --space-section: 40px;
+  --space-large-section: 64px;
+
+  /* border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 20px;
+  --radius-pill: 80px;
+
+  /* transition */
+  --transition-hover: 200ms ease;
+  --transition-card-hover: 250ms ease;
+  --transition-layout: 300ms ease;
+  --transition-chart: 400ms ease;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
