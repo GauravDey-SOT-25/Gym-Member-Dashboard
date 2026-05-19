@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stats Dashboard</title>
+
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="stats.css" />
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+  <div class="stats-grid" id="stats-grid"></div>
+
+  <!-- Load the backend first -->
+  <script src="data.js"></script>
+  
+  <!-- Provide a virtual module for realtime.js so it can import API without throwing an error -->
+  <script type="importmap">
+    {
+      "imports": {
+        "./data.js": "data:text/javascript;base64,ZXhwb3J0IGNvbnN0IEFQSSA9IG5ldyBQcm94eSh7fSwgeyBnZXQodCwgcCkgeyByZXR1cm4gd2luZG93LkFQSVtwXTsgfSB9KTs="
+      }
+    }
+  </script>
+
+  <!-- Load the frontend logic -->
+  <script type="module" src="statscards.js" ></script>
+</body>
+</html>
