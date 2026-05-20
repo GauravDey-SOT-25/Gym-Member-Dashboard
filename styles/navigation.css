@@ -1,0 +1,149 @@
+/* style.css */
+
+body {
+  margin: 0;
+
+  background: #000;
+
+  font-family: Arial;
+}
+
+/* Sidebar */
+
+.sidebar {
+  width: 240px;
+
+  height: 100vh;
+
+  background: #111;
+
+  padding: 20px;
+
+  position: fixed;
+
+  left: 0;
+  top: 0;
+}
+
+.logo {
+  color: #D9FF00;
+
+  font-size: 32px;
+
+  margin-bottom: 40px;
+}
+
+.sidebar-nav {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+/* Sidebar Buttons */
+
+.nav-btn {
+  padding: 16px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: #1f1f1f;
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  font-size: 16px;
+}
+
+.nav-btn:hover {
+  background: #D9FF00;
+
+  color: black;
+}
+
+.nav-btn.active {
+  background: #D9FF00;
+
+  color: black;
+}
+
+/* Floating Dock */
+
+.floating-dock {
+  position: fixed;
+
+  bottom: 20px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.dock-container {
+  display: flex;
+
+  gap: 10px;
+
+  background: #111;
+
+  padding: 14px;
+
+  border-radius: 20px;
+}
+
+/* Dock Buttons */
+
+.dock-btn {
+  padding: 14px 18px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: transparent;
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.dock-btn:hover {
+  background: #D9FF00;
+
+  color: black;
+}
+
+.dock-btn.active {
+  background: #D9FF00;
+
+  color: black;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .floating-dock {
+    width: 95%;
+  }
+
+  .dock-container {
+    justify-content: space-around;
+  }
+
+  .dock-btn {
+    flex: 1;
+  }
+}
