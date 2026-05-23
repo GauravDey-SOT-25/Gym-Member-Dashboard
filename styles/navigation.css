@@ -1,0 +1,101 @@
+/* styles/navigation.css */
+body {
+  margin: 0;
+  background: #000;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #111;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.logo {
+  color: #D9FF00;
+  font-size: 32px;
+  margin-top: 0;
+  margin-bottom: 40px;
+  font-family: 'Lexend', sans-serif;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-btn {
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #1f1f1f;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+  text-align: left;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background: #D9FF00;
+  color: black;
+}
+
+.profile-box {
+  background: #1f1f1f;
+  padding: 12px;
+  border-radius: 14px;
+  color: white;
+}
+
+.profile-box h4 { margin: 0; font-size: 14px; }
+.profile-box p { margin: 4px 0 0 0; font-size: 12px; color: #888; }
+
+.floating-dock {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: 100;
+}
+
+.dock-container {
+  display: flex;
+  gap: 10px;
+  background: #111;
+  padding: 14px;
+  border-radius: 20px;
+  border: 1px solid #333;
+}
+
+.dock-btn {
+  padding: 14px 18px;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dock-btn:hover, .dock-btn.active {
+  background: #D9FF00;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .floating-dock { width: 95%; left: 2.5%; transform: none; }
+  .dock-container { justify-content: space-around; }
+  .dock-btn { flex: 1; text-align: center; }
+}
