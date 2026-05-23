@@ -1,0 +1,238 @@
+/* styles/navigation.css */
+
+body {
+  margin: 0;
+  background: #000;
+  font-family: Arial, sans-serif;
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Sidebar
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #111;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #D9FF00;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Sidebar Nav Buttons
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.nav-btn {
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #1f1f1f;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    background 220ms ease,
+    color 220ms ease,
+    transform 160ms cubic-bezier(.34, 1.56, .64, 1),
+    box-shadow 220ms ease;
+}
+
+/* Subtle inner glow layer on hover */
+.nav-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(217, 255, 0, 0.06);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+.nav-btn:hover {
+  background: #2a2a00;
+  color: #D9FF00;
+  transform: translateX(4px);
+  box-shadow: inset 3px 0 0 #D9FF00;
+}
+
+.nav-btn:hover::after {
+  opacity: 1;
+}
+
+.nav-btn:active {
+  transform: translateX(2px) scale(0.98);
+}
+
+.nav-btn.active {
+  background: #D9FF00;
+  color: #000;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(217, 255, 0, 0.25);
+}
+
+.nav-btn.active:hover {
+  transform: translateX(4px);
+  box-shadow:
+    inset 3px 0 0 rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(217, 255, 0, 0.3);
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Profile Box
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.profile-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: #1a1a1a;
+  border-radius: 14px;
+  border: 1px solid #2a2a2a;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.profile-box:hover {
+  border-color: rgba(217, 255, 0, 0.3);
+  box-shadow: 0 0 12px rgba(217, 255, 0, 0.06);
+}
+
+.profile-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #D9FF00;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.profile-box h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.profile-box p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #888;
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Floating Dock
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.floating-dock {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.dock-container {
+  display: flex;
+  gap: 8px;
+  background: #111;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid #222;
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Dock Buttons
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.dock-btn {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    transform 160ms cubic-bezier(.34, 1.56, .64, 1),
+    box-shadow 200ms ease;
+}
+
+.dock-btn:hover {
+  background: #2a2a00;
+  color: #D9FF00;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(217, 255, 0, 0.2);
+}
+
+.dock-btn:active {
+  transform: translateY(-1px) scale(0.96);
+}
+
+.dock-btn.active {
+  background: #D9FF00;
+  color: #000;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(217, 255, 0, 0.3);
+}
+
+.dock-btn.active:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(217, 255, 0, 0.4);
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Mobile
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .floating-dock {
+    width: 95%;
+  }
+
+  .dock-container {
+    justify-content: space-around;
+  }
+
+  .dock-btn {
+    flex: 1;
+  }
+}
