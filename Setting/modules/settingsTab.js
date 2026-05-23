@@ -4,6 +4,10 @@
  */
 import { showToast } from './ui.js';
 
+// Default avatar image placeholder
+const DEFAULT_AVATAR = 'avatar.png';
+
+
 export const renderSettingsTab = (containerId) => {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -29,7 +33,7 @@ export const renderSettingsTab = (containerId) => {
                         <p class="card-subtitle">Update your photo and personal details here.</p>
                         
                         <div class="profile-upload-area">
-                            <img src="" alt="Profile" class="profile-large" id="profile-preview" />
+                            <img src="${DEFAULT_AVATAR}" alt="Profile" class="profile-large" id="profile-preview" />
                             <input type="file" id="profile-image-input" accept="image/*" hidden />
                             <div class="upload-actions">
                                 <button class="btn-secondary" id="upload-btn" type="button">
@@ -246,6 +250,13 @@ const initProfileForm = (container) => {
             const reader = new FileReader();
             reader.onload = () => {
                 profilePreview.src = reader.result;
+                
+                // Sync with the Topbar avatar in real-time
+                const topbarAvatar = document.querySelector('.user-avatar img');
+                if (topbarAvatar) {
+                    topbarAvatar.src = reader.result;
+                }
+                
                 showToast('Profile picture updated.');
             };
             reader.readAsDataURL(file);
@@ -255,7 +266,14 @@ const initProfileForm = (container) => {
     const removePicBtn = container.querySelector('#remove-pic-btn');
     if (removePicBtn && profilePreview) {
         removePicBtn.addEventListener('click', () => {
-            profilePreview.src = '';
+            profilePreview.src = DEFAULT_AVATAR;
+            
+            // Sync with the Topbar avatar in real-time
+            const topbarAvatar = document.querySelector('.user-avatar img');
+            if (topbarAvatar) {
+                topbarAvatar.src = DEFAULT_AVATAR;
+            }
+            
             imageInput.value = '';
             showToast('Profile picture removed.');
         });
