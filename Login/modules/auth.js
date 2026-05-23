@@ -1,7 +1,4 @@
-/**
- * Authentication Module
- * Manages Login and Sign Up views, animations, visibility toggles, and validations.
- */
+import API from '../../mock-api-data/data.js';
 
 // State tracking: 'login' or 'signup'
 let authState = 'login';
@@ -296,8 +293,9 @@ const setupLoginListeners = () => {
 
     // Form Submission Validation
     const form = containerElement.querySelector('#login-form');
+
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const emailInput = form.querySelector('#login-email');
@@ -330,16 +328,29 @@ const setupLoginListeners = () => {
                 return;
             }
 
-            // Mock successful sign in
+            // Validate against mock database
+            const users = API.getAllUsers();
+            const matchedUser = users.find(u => u.email.toLowerCase() === emailInput.value.trim().toLowerCase());
+
+            if (!matchedUser) {
+                showValidationError(emailGroup, emailError, 'User email not found.');
+                triggerFormShake();
+                return;
+            }
+
+            // Successful authentication path
             const originalButtonContent = form.querySelector('.btn-auth').innerHTML;
             const authButton = form.querySelector('.btn-auth');
             authButton.disabled = true;
             authButton.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Authenticating...';
 
+            // Set dynamic member ID & load API
+            localStorage.setItem('currentMemberId', matchedUser.id);
+            await API.init(matchedUser.id);
+
             setTimeout(() => {
-                showAuthToast('Login successful! Redirecting...');
+                showAuthToast(`Welcome back, ${matchedUser.name}! Redirecting...`);
                 setTimeout(() => {
-                    // Re-enable and redirect to Settings page
                     authButton.disabled = false;
                     authButton.innerHTML = originalButtonContent;
                     window.location.href = '../Setting/index.html';

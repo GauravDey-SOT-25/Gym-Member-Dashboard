@@ -3,6 +3,7 @@
  * Dynamically constructs and manages the UI for the Settings section.
  */
 import { showToast } from './ui.js';
+import API from '../../mock-api-data/data.js';
 
 // Default avatar image placeholder
 const DEFAULT_AVATAR = 'avatar.png';
@@ -11,6 +12,15 @@ const DEFAULT_AVATAR = 'avatar.png';
 export const renderSettingsTab = (containerId) => {
     const container = document.getElementById(containerId);
     if (!container) return;
+
+    // Load active session mock data
+    const member = API.getMember();
+    const membership = API.getMembership();
+    const bookings = API.getBookings();
+
+    const firstName = member?.name?.split(' ')[0] || '';
+    const lastName = member?.name?.split(' ').slice(1).join(' ') || '';
+    const email = member?.email || '';
 
     // Define the HTML structure
     const html = `
@@ -47,25 +57,54 @@ export const renderSettingsTab = (containerId) => {
                             <div class="form-group-row">
                                 <div class="form-group">
                                     <label>First Name <span class="text-danger">*</span></label>
-                                    <input type="text"  class="pill-input" required>
+                                    <input type="text" value="${firstName}" class="pill-input" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name <span class="text-danger">*</span></label>
-                                    <input type="text"  class="pill-input" required>
+                                    <input type="text" value="${lastName}" class="pill-input" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Email Address <span class="text-danger">*</span></label>
-                                <input type="email" value="abc@example.com" class="pill-input" required>
+                                <input type="email" value="${email}" class="pill-input" required>
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="tel"  class="pill-input">
+                                <input type="tel" value="+1 (555) 019-2834" class="pill-input">
                             </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn-primary save-btn">Save Changes</button>
                             </div>
                         </form>
+                    </div>
+
+                    <!-- Membership Status Premium Card -->
+                    <div class="card mt-20 membership-badge-card">
+                        <div class="membership-header">
+                            <div class="plan-details">
+                                <i class="ph-fill ph-shield-check"></i>
+                                <div>
+                                    <h3>LeapX <span class="plan-tag plan-${membership?.plan?.toLowerCase()}">${membership?.plan}</span> Status</h3>
+                                    <p class="plan-sub">Renews automatically via Stripe</p>
+                                </div>
+                            </div>
+                            <span class="status-pill status-${membership?.status?.toLowerCase()}">${membership?.status?.replace('_', ' ')}</span>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="membership-meta">
+                            <div class="meta-row">
+                                <span>Membership Status</span>
+                                <strong>Active</strong>
+                            </div>
+                            <div class="meta-row">
+                                <span>Expiry Date</span>
+                                <strong>${membership?.expiryDate}</strong>
+                            </div>
+                            <div class="meta-row">
+                                <span>Days Remaining</span>
+                                <strong class="days-alert">${membership?.daysRemaining} days remaining</strong>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -341,12 +380,14 @@ const initLogoutInteraction = (container) => {
 
             setTimeout(() => {
                 showToast('You have been logged out.');
-                // Normally we'd redirect here, e.g., window.location.href = '/login'
+                
+                // Clear local session
+                localStorage.removeItem('currentMemberId');
+                API.stopRealtime();
+                
                 setTimeout(() => {
-                    logoutBtn.innerHTML = originalText;
-                    logoutBtn.disabled = false;
-                    logoutBtn.style.opacity = '1';
-                }, 1000);
+                    window.location.href = '../Login/index.html';
+                }, 800);
             }, 1000);
         });
     }
