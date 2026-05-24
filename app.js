@@ -264,25 +264,112 @@ canvas {
   display: none;
 }
 
+@media (max-width: 1024px) {
+
+  .dashboard {
+    padding: 24px;
+  }
+
+  .chart-card {
+    padding: 24px;
+  }
+
+  .chart-wrapper {
+    height: 450px;
+  }
+
+}
+
+
 @media (max-width: 768px) {
+
+  .dashboard {
+    padding: 18px;
+    align-items: flex-start;
+  }
+
+  .chart-card {
+    padding: 20px;
+    border-radius: 18px;
+  }
 
   .top-bar {
     flex-direction: column;
-    gap: 20px;
     align-items: flex-start;
+    gap: 18px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    line-height: 1.3;
   }
 
   .chart-type-controls,
   .time-controls {
+    width: 100%;
     flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn,
+  .type-btn {
+    flex: 1;
+    min-width: 120px;
+
+    padding: 12px;
+
+    font-size: 0.95rem;
+
+    text-align: center;
   }
 
   .chart-wrapper {
-    height: 380px;
+    height: 340px;
   }
 
 }
-`;
+
+
+@media (max-width: 480px) {
+
+  .dashboard {
+    padding: 12px;
+  }
+
+  .chart-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .chart-type-controls,
+  .time-controls {
+    flex-direction: column;
+  }
+
+  .btn,
+  .type-btn {
+    width: 100%;
+    min-width: unset;
+
+    font-size: 0.9rem;
+
+    padding: 12px 14px;
+  }
+
+  .chart-wrapper {
+    height: 280px;
+  }
+
+  .loader {
+    font-size: 0.85rem;
+    padding: 10px 16px;
+  }
+
+}`;
 
 document.head.appendChild(style);
 
