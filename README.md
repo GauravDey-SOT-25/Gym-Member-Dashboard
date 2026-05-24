@@ -1,12 +1,20 @@
-# Gym Dashboard Responsive Website
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-Open `index.html` in VS Code Live Server. All pages use `style1.css` and `script.js`.
+# Run and deploy your AI Studio app
 
-Files:
-- index.html
-- analytics.html
-- membership.html
-- rewards.html
-- settings.html
-- style1.css
-- script.js
+This contains everything you need to run your app locally.
+
+View your app in AI Studio: https://ai.studio/apps/6b8b2cda-9d05-438c-999b-1c7dd7d92259
+
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

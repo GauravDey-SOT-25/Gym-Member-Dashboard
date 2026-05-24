@@ -1,0 +1,6 @@
+{
+  "name": "Gym Dashboard",
+  "description": "A high-performance Gym Dashboard system built using a modular vanilla JavaScript architecture supporting dark and light mode themes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

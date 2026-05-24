@@ -1,32 +1,436 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gym Dashboard</title>
-  <link rel="stylesheet" href="style1.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym Dashboard — Theme Module</title>
+  <link rel="stylesheet" href="/styles/theme.css" />
+  <link rel="stylesheet" href="/styles/base.css" />
 </head>
 <body>
-<nav class="mobile-nav">
-  <a class="nav-item active" href="index.html">Overview</a><a class="nav-item" href="analytics.html">Analytics</a><a class="nav-item" href="membership.html">Membership</a><a class="nav-item" href="rewards.html">Rewards</a><a class="nav-item" href="settings.html">Settings</a>
-</nav>
-<div class="app">
-  <aside class="sidebar"><div class="logo">GYM<span>.</span></div><nav class="nav"><a class="nav-item active" href="index.html">Overview</a><a class="nav-item" href="analytics.html">Analytics</a><a class="nav-item" href="membership.html">Membership</a><a class="nav-item" href="rewards.html">Rewards</a><a class="nav-item" href="settings.html">Settings</a><a class="nav-item logout" href="#">Logout</a></nav></aside>
-  <div class="main">
-    <header class="topbar"><input type="text" placeholder="Search..." class="search"><div class="topbar-right"><div class="notification">🔔</div><div class="avatar"></div></div></header>
-    <main class="content">
-      <section class="welcome"><h1>Welcome Back, User 👋</h1><p>Your fitness journey overview with realtime gym stats.</p></section>
-      <section class="cards">
-        <div class="card"><h3>Active Plan</h3><p class="value">Premium</p><p class="muted">Full gym access</p></div>
-        <div class="card"><h3>Expiry</h3><p class="value">12 Aug</p><p class="muted">2026 renewal</p></div>
-        <div class="card"><h3>Total Sessions</h3><p class="value">48</p><p class="muted">+8 this month</p></div>
-        <div class="card"><h3>Reward Points</h3><p class="value">1200</p><p class="muted">300 to next gift</p></div>
+
+  <div class="dashboard">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="dashboard-sidebar">
+      <div>
+        <div class="sidebar-brand">
+          <div class="brand-icon">⚡</div>
+          <h2 class="logo">PowerGym</h2>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="#overview" class="nav-link active" data-view="overview">
+            <svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            Overview
+          </a>
+          <a href="#analytics" class="nav-link" data-view="analytics">
+            <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+            Analytics
+          </a>
+          <a href="#membership" class="nav-link" data-view="membership">
+            <svg viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Membership
+          </a>
+          <a href="#rewards" class="nav-link" data-view="rewards">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89 7 23l5-3 5 3-1.12-9.12"/></svg>
+            Rewards
+          </a>
+          <a href="#settings" class="nav-link" data-view="settings">
+            <svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            Settings
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="profile-summary">
+          <div class="avatar" id="sidebar-avatar">S</div>
+          <div class="profile-info">
+            <h4 id="sidebar-display-name">Shashank</h4>
+            <p id="sidebar-membership-tier">Premium Plan</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Section -->
+    <main class="main" id="dashboard-main">
+
+      <!-- Dynamic Topbar -->
+      <header class="topbar">
+        <div class="topbar-title">
+          <h1 id="topbar-view-title">Dashboard</h1>
+          <p id="topbar-view-subtitle">Company-style modular theme system</p>
+        </div>
+
+        <button class="theme-toggle" id="theme-toggle-btn" data-theme-toggle>
+          🌙 Dark
+        </button>
+      </header>
+
+      <!-- VIEW 1: OVERVIEW -->
+      <section class="view-panel active" id="view-overview">
+        <div class="welcome-card" id="overview-welcome-banner">
+          <h2>Welcome back, <span class="user-display-name">Shashank</span></h2>
+          <p>Your gym dashboard supports dark and light mode using ES6 modules. Manage analytics, goals, plans, and fitness reward points instantly.</p>
+        </div>
+
+        <!-- Metric Card Grid -->
+        <div class="card-grid">
+
+          <!-- CARD 1: ACTIVE PLAN -->
+          <article class="card" id="card-active-plan">
+            <div class="card-header-inner">
+              <div class="card-label">Active Plan</div>
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+            </div>
+            <div>
+              <h2 id="metric-membership-plan">Premium</h2>
+              <p class="card-text">Active member since May 2026</p>
+            </div>
+            <button class="primary-btn" id="btn-view-plan">View &amp; Edit Plan</button>
+          </article>
+
+          <!-- CARD 2: TOTAL SESSIONS -->
+          <article class="card" id="card-total-sessions">
+            <div class="card-header-inner">
+              <div class="card-label">Total Sessions</div>
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              </div>
+            </div>
+            <div>
+              <h2 id="metric-total-sessions">24</h2>
+              <p class="card-text">Workout sessions completed this month</p>
+            </div>
+            <button class="secondary-btn" id="btn-log-workout-trigger">Log New Workout</button>
+          </article>
+
+          <!-- CARD 3: REWARD POINTS -->
+          <article class="card" id="card-reward-points">
+            <div class="card-header-inner">
+              <div class="card-label">Reward Points</div>
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89 7 23l5-3 5 3-1.12-9.12"/></svg>
+              </div>
+            </div>
+            <div>
+              <h2 id="metric-reward-points">1,240</h2>
+              <p class="card-text">Claim accessories, shakes, and sessions</p>
+            </div>
+            <button class="secondary-btn" id="btn-open-rewards-trigger">Redeem Rewards</button>
+          </article>
+
+        </div>
+
+        <!-- Split Layout Row -->
+        <div class="module-row">
+          
+          <!-- Recent activity block -->
+          <div class="block-card" id="overview-recent-sessions">
+            <div class="block-header">
+              <h3>Recent Workout Sessions</h3>
+              <button class="secondary-btn" style="height: 32px; font-size: 12px; padding: 0 12px;" id="btn-activity-log-workout">
+                Quick Log
+              </button>
+            </div>
+            <div class="history-list" id="recent-workouts-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Goals & Streaks block -->
+          <div class="block-card" id="overview-goals-progress">
+            <div class="block-header">
+              <h3>Weekly Goal Tracker</h3>
+            </div>
+            
+            <div class="progress-container">
+              <div class="progress-header">
+                <span>Completed Sessions</span>
+                <span id="label-weekly-sessions-progress">4 of 5 (80%)</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="bar-weekly-sessions" style="width: 80%"></div>
+              </div>
+            </div>
+
+            <div class="progress-container" style="margin-top: 24px;">
+              <div class="progress-header">
+                <span>Points to next Reward</span>
+                <span id="label-points-progress">1,240 / 1,500</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="bar-points-target" style="width: 82.6%"></div>
+              </div>
+            </div>
+
+            <!-- Health tip card -->
+            <div style="background: var(--surface); padding: 16px; border-radius: 12px; margin-top: 28px; border: 1px dashed var(--border-color);">
+              <h5 style="font-weight: 700; margin-bottom: 4px; font-size: 13px; display: flex; align-items: center; gap: 6px;">
+                💡 Mindful Pro-Tip
+              </h5>
+              <p style="font-size: 12px; color: var(--text-secondary);" id="dynamic-health-tip">
+                "Keep it up! Consecutive workouts build neurological habits. Log one today!"
+              </p>
+            </div>
+
+          </div>
+
+        </div>
       </section>
-      <section class="analytics"><div class="card large"><h3>Workout Activity</h3><div class="chart-placeholder"></div></div><div class="card"><h3>Usage</h3><div class="chart-placeholder small"></div></div></section>
-      <section class="actions"><div class="card"><h3>Quick Actions</h3><button class="btn-primary">Book Session</button><button class="btn-secondary">View Plan</button></div></section>
+
+      <!-- VIEW 2: ANALYTICS -->
+      <section class="view-panel" id="view-analytics">
+        <div class="block-card">
+          <div class="block-header">
+            <h3>Gym Analytics Overview</h3>
+            <p style="font-size: 13px; color: var(--text-muted);">Realtime session duration dynamics</p>
+          </div>
+
+          <div class="analytics-grid">
+            <div style="background: var(--surface); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; position: relative;">
+              <span style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Estimated Burned Calories</span>
+              <h3 style="font-size: 32px; font-weight: 800; margin: 8px 0; color: var(--accent);" id="analytics-burned-calories">14,280 kcal</h3>
+              <p style="font-size: 12px; color: var(--text-secondary);">620 kcal burned per workout session avg</p>
+            </div>
+
+            <div style="background: var(--surface); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px;">
+              <span style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Average Intensity Level</span>
+              <h3 style="font-size: 32px; font-weight: 800; margin: 8px 0;" id="analytics-avg-intensity">High Intensity (7.8)</h3>
+              <p style="font-size: 12px; color: var(--text-secondary);">Measured by heart rate and duration ratios</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 32px;">
+            <h4 style="margin-bottom: 16px; font-weight: 700;">Workout Split Allocation</h4>
+            
+            <div class="progress-container" style="margin-bottom: 16px;">
+              <div class="progress-header">
+                <span>Cardio (Run, Bike, Row)</span>
+                <span id="split-cardio-text">10 Sessions (41.6%)</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="split-cardio-bar" style="width: 41.6%"></div>
+              </div>
+            </div>
+
+            <div class="progress-container" style="margin-bottom: 16px;">
+              <div class="progress-header">
+                <span>Strength / Weightlifting</span>
+                <span id="split-strength-text">11 Sessions (45.8%)</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="split-strength-bar" style="width: 45.8%"></div>
+              </div>
+            </div>
+
+            <div class="progress-container" style="margin-bottom: 16px;">
+              <div class="progress-header">
+                <span>Crossfit &amp; Aerobics</span>
+                <span id="split-crossfit-text">3 Sessions (12.5%)</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="split-crossfit-bar" style="width: 12.5%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-card">
+          <div class="block-header">
+            <h3>Session Logs &amp; Analytics Trends</h3>
+          </div>
+          <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">
+            Analyze your workouts compiled over time. Update or reset the log list anytime to recalculate stats instantly.
+          </p>
+          <div class="history-list" id="analytics-workouts-list">
+            <!-- Full compilation list of logs -->
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: MEMBERSHIP -->
+      <section class="view-panel" id="view-membership">
+        <div class="block-card" style="margin-bottom: 32px;">
+          <h2 style="font-weight:700; margin-bottom: 12px;">PowerGym Membership Options</h2>
+          <p style="color: var(--text-secondary); font-size: 15px; max-width: 700px;">
+            Switch tiers dynamically based on your athletic goals. Choose standard plans tailored for professional coaching and all access.
+          </p>
+        </div>
+
+        <div class="plans-grid">
+          
+          <!-- Plan Card: Basic Flex -->
+          <div class="plan-card" id="plan-basic">
+            <div>
+              <div class="plan-title">Basic Flex</div>
+              <p style="font-size:12px; color:var(--text-muted);">Standard gym equipment access</p>
+              <div class="plan-price">$29<span> / month</span></div>
+              <ul class="plan-features">
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Unrestricted Gym Entry</li>
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Core Strength Zones</li>
+                <li style="color:var(--text-muted); text-decoration: line-through;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Custom Pro Coach sessions</li>
+                <li style="color:var(--text-muted); text-decoration: line-through;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Free Nutritional Bars &amp; Shakes</li>
+              </ul>
+            </div>
+            <button class="secondary-btn action-btn-tier" data-tier="Basic">Activate Basic</button>
+          </div>
+
+          <!-- Plan Card: Premium -->
+          <div class="plan-card active" id="plan-premium">
+            <div>
+              <div class="plan-title" style="color: var(--accent);">Premium Suite</div>
+              <p style="font-size:12px; color:var(--text-muted);">The champion choice with extras</p>
+              <div class="plan-price">$59<span> / month</span></div>
+              <ul class="plan-features">
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Unrestricted Gym Entry</li>
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 2x Free Coaching Consultations</li>
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Access to Spa, Jacuzzi and Sauna</li>
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 15% Reward Store Discount</li>
+              </ul>
+            </div>
+            <button class="primary-btn action-btn-tier" data-tier="Premium">Activate Premium</button>
+          </div>
+
+          <!-- Plan Card: Ultimate Elite -->
+          <div class="plan-card" id="plan-ultimate">
+            <div>
+              <div class="plan-title" style="color: #00e5ff;">Ultimate Elite</div>
+              <p style="font-size:12px; color:var(--text-muted);">Ultimate multi-club access card</p>
+              <div class="plan-price">$99<span> / month</span></div>
+              <ul class="plan-features">
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> All-Access Universal Multi-location</li>
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Unlimited 1-on-1 Pro Coaching</li>
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Spa suite &amp; Free guest tickets</li>
+                <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Complimentary Everyday Protein Shake</li>
+              </ul>
+            </div>
+            <button class="secondary-btn action-btn-tier" data-tier="Ultimate">Activate Ultimate</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VIEW 4: REWARDS STORE -->
+      <section class="view-panel" id="view-rewards">
+        <div class="block-card" style="margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h2 style="font-weight:700;">Fitness Reward Store</h2>
+            <p style="color: var(--text-secondary); font-size: 15px; margin-top: 4px;">
+              Redeem reward points accumulated by logging workout sessions.
+            </p>
+          </div>
+          <div style="background: var(--surface); padding: 12px 24px; border: 1px solid var(--border-color); border-radius: 12px;">
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px;">Your Redeemable Balance</div>
+            <h3 style="font-size: 28px; font-weight: 800; color: var(--accent);" id="rewards-view-points">1,240 pts</h3>
+          </div>
+        </div>
+
+        <div class="rewards-store" id="rewards-store-grid">
+          <!-- Dynamically populated to process claims -->
+        </div>
+      </section>
+
+      <!-- VIEW 5: SETTINGS -->
+      <section class="view-panel" id="view-settings">
+        <div class="settings-container">
+          <div class="block-card">
+            <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">Profile Configurations</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px;">Manage user preferences and local gym metrics</p>
+            
+            <form id="form-settings-profile">
+              <div class="form-group">
+                <label for="settings-username">Display Name</label>
+                <input type="text" class="form-control" id="settings-username" value="Shashank" required />
+              </div>
+
+              <div class="form-group">
+                <label for="settings-weekly-goal">Weekly Workout Count Goal</label>
+                <select class="form-control" id="settings-weekly-goal">
+                  <option value="3">3 workout sessions / week</option>
+                  <option value="4">4 workout sessions / week</option>
+                  <option value="5" selected>5 workout sessions / week</option>
+                  <option value="6">6 workout sessions / week</option>
+                  <option value="7">7 workout sessions / week</option>
+                </select>
+              </div>
+
+              <div style="margin-top: 32px; display: flex; justify-content: space-between; align-items: center;">
+                <button type="button" class="secondary-btn" id="btn-reset-dashboard-data" style="border-color: #ef4444; color: #ef4444;">
+                  Reset Logs &amp; Points
+                </button>
+                <button type="submit" class="primary-btn">Save Configurations</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="block-card" style="border-style: dashed;">
+            <h4 style="margin-bottom: 8px; font-weight: 700;">Theme Module Details</h4>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+              This system compiles CSS custom properties dynamically linked with local storage and system media query preferences. It organizes calculations cleanly into sub-folders to optimize runtime bundle operations.
+            </p>
+          </div>
+        </div>
+      </section>
+
     </main>
+
   </div>
-</div>
-<script src="script.js"></script>
+
+  <!-- Dialog / Overlay Modal for Workout Logger -->
+  <div class="overlay" id="modal-workout-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Log Workout</h3>
+        <button class="modal-close" id="btn-close-workout-modal">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="form-log-workout">
+        
+        <div class="form-group">
+          <label for="workout-type">Activity Type</label>
+          <select class="form-control" id="workout-type" required>
+            <option value="Cardio">Cardio (Run/Bike/Row)</option>
+            <option value="Strength">Strength / Weightlifting</option>
+            <option value="Crossfit">Crossfit / HIIT</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="workout-name">Workout Name</label>
+          <input type="text" class="form-control" id="workout-name" placeholder="e.g. Morning Jog, Leg Day Heavy" required />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="workout-duration">Duration (minutes)</label>
+            <input type="number" class="form-control" id="workout-duration" min="5" max="300" value="45" required />
+          </div>
+          <div class="form-group">
+            <label for="workout-intensity">Avg Heart Rate (BPM)</label>
+            <input type="number" class="form-control" id="workout-intensity" min="60" max="220" value="135" required />
+          </div>
+        </div>
+
+        <div style="margin-top: 28px; display: flex; justify-content: flex-end; gap: 12px;">
+          <button type="button" class="secondary-btn" id="btn-cancel-workout-modal" style="height: 44px;">Cancel</button>
+          <button type="submit" class="primary-btn" style="height: 44px; padding: 0 24px;">Log Exercise</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Area -->
+  <div class="toast-container" id="toast-notification-area"></div>
+
+  <!-- Pure ES6 Vanilla Scripts -->
+  <script type="module" src="/js/app.js"></script>
+
 </body>
 </html>
