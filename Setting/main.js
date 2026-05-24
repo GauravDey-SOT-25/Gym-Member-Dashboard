@@ -60,14 +60,12 @@ const layoutHtml = `
 `;
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Check authentication session
-    const currentMemberId = localStorage.getItem('currentMemberId');
-    if (!currentMemberId) {
-        window.location.href = '../Login/index.html';
-        return;
-    }
+    // Use a standalone fallback member if there is no login session.
+    const DEFAULT_MEMBER_ID = 'guest';
+    let currentMemberId = localStorage.getItem('currentMemberId') || DEFAULT_MEMBER_ID;
+    localStorage.setItem('currentMemberId', currentMemberId);
 
-    // Initialize Mock API for the logged-in member
+    // Initialize Mock API for the current member
     await API.init(currentMemberId);
     API.startRealtime();
 
