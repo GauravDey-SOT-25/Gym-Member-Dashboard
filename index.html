@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Dashboard - Membership Analytics</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 28px;
+            color: #2d3748;
+            margin: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #f0f4ff;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+        .card-header h2 {
+            font-size: 22px;
+            color: #2d3748;
+            margin: 0;
+        }
+
+        .card-icon {
+            font-size: 28px;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-card.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stat-card h3 {
+            font-size: 12px;
+            color: #4a5568;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .stat-card.active h3 {
+            color: white;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .stat-card.active .stat-value {
+            color: white;
+        }
+
+        .stat-percentage {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 6px;
+        }
+
+        .stat-card.active .stat-percentage {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .legend-container {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .legend-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #4a5568;
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 140px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .info-badge {
+            background: #edf2f7;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #2d3748;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .navbar h1 {
+                font-size: 24px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>💪 Gym Dashboard</h1>
+        <div class="nav-links">
+            <a href="#overview">Overview</a>
+            <a href="#analytics">Analytics</a>
+            <a href="#membership">Membership</a>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="dashboard-grid">
+            <!-- Membership Doughnut Chart Section -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Membership Distribution</h2>
+                    <span class="card-icon">📊</span>
+                </div>
+
+                <div class="chart-wrapper">
+                    <div class="loading" id="chartLoading">Loading chart...</div>
+                    <div class="chart-container">
+                        <canvas id="membershipDoughnutChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="stats-grid" id="statsGrid">
+                    <!-- Stats populated by JavaScript -->
+                </div>
+
+                <div class="legend-container">
+                    <div class="legend-title">Membership Types</div>
+                    <div class="legend-items" id="legendItems">
+                        <!-- Legend populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="info-badge">
+                    <strong>ℹ️ Real-time Updates:</strong> Data refreshes every 10 seconds. Click stat cards to highlight segments.
+                </div>
+
+                <div class="controls">
+                    <button class="btn-primary" onclick="refreshMembershipChart()">Refresh Data</button>
+                    <button class="btn-secondary" onclick="toggleChartAnimation()">Toggle Animation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import all necessary JavaScript files -->
+    <script src="api.js"></script>
+    <script src="data.js"></script>
+    <script src="membershipChart.js"></script>
+    <script src="realtime.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
