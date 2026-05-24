@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Dashboard - Membership Analytics</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 16px;
+            color: #e2e8f0;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            background: #1e2a3a;
+            border: 1px solid #2d3f55;
+            border-top: 4px solid #FFD700;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .navbar h1 {
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: #FFD700;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,215,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,215,0,0.15);
+            border-color: #FFD700;
+        }
+
+        /* ── DASHBOARD ── */
+        .dashboard-container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ── CARD ── */
+        .card {
+            background: #1e2a3a;
+            border: 1px solid #2d3f55;
+            border-radius: 16px;
+            padding: clamp(16px, 4vw, 28px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            animation: slideIn 0.5s ease-out;
+            /* CRITICAL: establish block-level stacking context */
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #2d3f55;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .card-header h2 {
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+            color: #FFD700;
+            font-weight: 700;
+        }
+
+        .card-icon { font-size: 1.6rem; }
+
+        /* ── CHART WRAPPER — THE KEY FIX ──
+           No fixed height. The chart sizes itself via aspectRatio:1 in Chart.js.
+           The wrapper is just a normal block flow element with a max-width.
+           Nothing here creates a pixel-tall box that bleeds over content below.
+        ── */
+        .chart-wrapper {
+            width: 100%;
+            /* Constrain max size; on small screens shrinks naturally */
+            max-width: 380px;
+            margin: 0 auto 24px auto;
+            /* relative just for the loading overlay */
+            position: relative;
+        }
+
+        /* Loading overlay sits inside the wrapper, not over the whole card */
+        .loading {
+            display: none;
+            position: absolute;
+            inset: 0;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30,42,58,0.85);
+            border-radius: 8px;
+            color: #FFD700;
+            font-weight: 700;
+            font-size: 0.95rem;
+            z-index: 10;
+        }
+        .loading.show { display: flex; }
+
+        /* The canvas is a direct child of chart-wrapper.
+           Chart.js sets width/height on it; with responsive:true + aspectRatio:1
+           it will be a square that fits the max-width above. */
+        #membershipDoughnutChart {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* ── STATS GRID ── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 480px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .stat-card {
+            background: #243447;
+            border: 1px solid #2d3f55;
+            border-left: 4px solid #FFD700;
+            padding: 14px 10px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* CRITICAL: no position:relative, no z-index — keeps it in normal flow */
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255,215,0,0.15);
+        }
+
+        .stat-card.active {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-color: #FFD700;
+        }
+
+        .stat-card-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .stat-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .stat-card h3 {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        .stat-card.active h3 { color: #1a1a2e; }
+
+        .stat-value {
+            font-size: clamp(1.3rem, 4vw, 1.7rem);
+            font-weight: 800;
+            color: #FFD700;
+            line-height: 1.1;
+        }
+
+        .stat-card.active .stat-value { color: #1a1a2e; }
+
+        .stat-percentage {
+            font-size: 0.72rem;
+            color: #64748b;
+            margin-top: 3px;
+        }
+
+        .stat-card.active .stat-percentage { color: rgba(26,26,46,0.75); }
+
+        /* ── LEGEND ── */
+        .legend-container {
+            padding-top: 16px;
+            border-top: 2px solid #2d3f55;
+            margin-bottom: 16px;
+        }
+
+        .legend-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: #cbd5e0;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .legend-item:hover {
+            border-color: rgba(255,215,0,0.4);
+            background: rgba(255,215,0,0.07);
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ── INFO BADGE ── */
+        .info-badge {
+            background: #162032;
+            border-left: 4px solid #FFD700;
+            padding: 11px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .info-badge strong { color: #FFD700; }
+
+        /* ── CONTROLS ── */
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            flex: 1;
+            min-width: 130px;
+            padding: 11px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #1a1a2e;
+            box-shadow: 0 4px 16px rgba(255,215,0,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255,215,0,0.45);
+        }
+
+        .btn-primary:active { transform: translateY(0); }
+
+        .btn-secondary {
+            background: #243447;
+            color: #FFD700;
+            border: 1px solid #2d3f55;
+        }
+
+        .btn-secondary:hover {
+            background: #2d3f55;
+            border-color: #FFD700;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 480px) {
+            body { padding: 10px; }
+
+            .navbar { padding: 14px 16px; }
+
+            .chart-wrapper { max-width: 300px; }
+
+            .controls { flex-direction: column; }
+            .btn-primary, .btn-secondary { min-width: 100%; }
+        }
+
+        @media (min-width: 600px) {
+            .chart-wrapper { max-width: 420px; }
+        }
+
+        @media (min-width: 768px) {
+            .chart-wrapper { max-width: 460px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>💪 Gym Dashboard</h1>
+        <div class="nav-links">
+            <a href="#overview">Overview</a>
+            <a href="#analytics">Analytics</a>
+            <a href="#membership">Membership</a>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Membership Distribution</h2>
+                <span class="card-icon">📊</span>
+            </div>
+
+            <!-- CHART: wrapper has NO fixed height. Canvas sizes itself. -->
+            <div class="chart-wrapper">
+                <div class="loading" id="chartLoading">Loading chart…</div>
+                <canvas id="membershipDoughnutChart"></canvas>
+            </div>
+
+            <!-- Stats sit in normal document flow — chart cannot overlap them -->
+            <div class="stats-grid" id="statsGrid"></div>
+
+            <div class="legend-container">
+                <div class="legend-title">Membership Types</div>
+                <div class="legend-items" id="legendItems"></div>
+            </div>
+
+            <div class="info-badge">
+                <strong>ℹ️ Live Updates:</strong> Data refreshes every 10 seconds.
+                Click a stat card or chart segment to highlight it.
+            </div>
+
+            <div class="controls">
+                <button class="btn-primary"   onclick="refreshMembershipChart()">🔄 Refresh Data</button>
+                <button class="btn-secondary" onclick="toggleChartAnimation(event)">✨ Toggle Animation</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="data.js"></script>
+    <script src="membershipChart.js"></script>
+    <script src="realtime.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
