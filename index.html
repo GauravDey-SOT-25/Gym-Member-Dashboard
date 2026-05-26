@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMatrix - Premium Gym SaaS Portal</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Charting Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom Theme Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        /* Notifications Dropdown Custom Styling */
+        .notif-dropdown {
+            position: absolute;
+            top: 70px;
+            right: 80px;
+            width: 320px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-premium);
+            padding: 16px;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 120;
+            max-height: 400px;
+            overflow-y: auto;
+            animation: fadeIn 0.25s ease;
+        }
+        .notif-dropdown.show {
+            display: flex;
+        }
+        .notif-dropdown h3 {
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .notif-item {
+            padding: 10px;
+            border-radius: 8px;
+            background: var(--bg-card);
+            font-size: 12px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        .notif-item.unread {
+            border-left: 3px solid var(--accent-primary);
+            background: rgba(217, 255, 0, 0.02);
+        }
+        .notif-item:hover {
+            border-color: var(--accent-primary);
+        }
+        .notif-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <!-- Application Orchestrator Script Module -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>

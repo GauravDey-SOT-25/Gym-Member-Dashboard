@@ -1,0 +1,714 @@
+{
+  "users": {
+    "MBR-001": {
+      "id": "MBR-001",
+      "name": "Arjun Verma",
+      "email": "arjun@email.com",
+      "phone": "+91 98765 43210",
+      "plan": "Premium",
+      "status": "active",
+      "daysRemaining": 79.31293280314816,
+      "sessions": 48,
+      "streak": 6,
+      "calories": 18400,
+      "points": 1260,
+      "tier": "Gold"
+    },
+    "MBR-002": {
+      "id": "MBR-002",
+      "name": "Priya Sharma",
+      "email": "priya@email.com",
+      "phone": "+91 98765 43211",
+      "plan": "Basic",
+      "status": "expiring_soon",
+      "daysRemaining": 4,
+      "sessions": 22,
+      "streak": 2,
+      "calories": 8200,
+      "points": 400,
+      "tier": "Silver"
+    },
+    "MBR-003": {
+      "id": "MBR-003",
+      "name": "Rohan Mehta",
+      "email": "rohan@email.com",
+      "phone": "+91 98765 43212",
+      "plan": "Elite",
+      "status": "active",
+      "daysRemaining": 180,
+      "sessions": 91,
+      "streak": 14,
+      "calories": 34200,
+      "points": 3100,
+      "tier": "Platinum"
+    },
+    "MBR-004": {
+      "id": "MBR-004",
+      "name": "Sneha Iyer",
+      "email": "sneha@email.com",
+      "phone": "+91 98765 43213",
+      "plan": "Basic",
+      "status": "expired",
+      "daysRemaining": 0,
+      "sessions": 10,
+      "streak": 0,
+      "calories": 3100,
+      "points": 100,
+      "tier": "Bronze"
+    },
+    "MBR-005": {
+      "id": "MBR-005",
+      "name": "Karan Singh",
+      "email": "karan@email.com",
+      "phone": "+91 98765 43214",
+      "plan": "Premium",
+      "status": "active",
+      "daysRemaining": 45,
+      "sessions": 60,
+      "streak": 9,
+      "calories": 22000,
+      "points": 1800,
+      "tier": "Gold"
+    },
+    "MBR-006": {
+      "id": "MBR-006",
+      "name": "Anita Joshi",
+      "email": "anita@email.com",
+      "phone": "+91 98765 43215",
+      "plan": "Elite",
+      "status": "active",
+      "daysRemaining": 200,
+      "sessions": 110,
+      "streak": 21,
+      "calories": 41000,
+      "points": 4200,
+      "tier": "Platinum"
+    },
+    "MBR-007": {
+      "id": "MBR-007",
+      "name": "Vikram Nair",
+      "email": "vikram@email.com",
+      "phone": "+91 98765 43216",
+      "plan": "Basic",
+      "status": "active",
+      "daysRemaining": 20,
+      "sessions": 15,
+      "streak": 3,
+      "calories": 5400,
+      "points": 250,
+      "tier": "Bronze"
+    },
+    "MBR-008": {
+      "id": "MBR-008",
+      "name": "Meera Pillai",
+      "email": "meera@email.com",
+      "phone": "+91 98765 43217",
+      "plan": "Premium",
+      "status": "active",
+      "daysRemaining": 90,
+      "sessions": 55,
+      "streak": 11,
+      "calories": 20100,
+      "points": 1600,
+      "tier": "Gold"
+    },
+    "MBR-009": {
+      "id": "MBR-009",
+      "name": "Aditya Rao",
+      "email": "aditya@email.com",
+      "phone": "+91 98765 43218",
+      "plan": "Basic",
+      "status": "expiring_soon",
+      "daysRemaining": 6,
+      "sessions": 8,
+      "streak": 1,
+      "calories": 2800,
+      "points": 80,
+      "tier": "Bronze"
+    },
+    "MBR-010": {
+      "id": "MBR-010",
+      "name": "Divya Menon",
+      "email": "divya@email.com",
+      "phone": "+91 98765 43219",
+      "plan": "Elite",
+      "status": "active",
+      "daysRemaining": 150,
+      "sessions": 78,
+      "streak": 18,
+      "calories": 29300,
+      "points": 2900,
+      "tier": "Platinum"
+    }
+  },
+  "sessions": {
+    "MBR-001": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [],
+      "pointsHistory": [
+        {
+          "date": "2026-05-25",
+          "action": "Activity Streak Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-25",
+          "action": "Activity Streak Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-25",
+          "action": "Activity Streak Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-25",
+          "action": "Activity Streak Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-25",
+          "action": "Activity Streak Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-25",
+          "action": "Activity Streak Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    },
+    "MBR-002": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "reminder",
+          "message": "Zumba class tomorrow at 7:00 AM",
+          "read": false,
+          "timestamp": "2026-05-25T11:08:57.469Z"
+        },
+        {
+          "id": 2,
+          "type": "offer",
+          "message": "Renew now and get 1 month free!",
+          "read": false,
+          "timestamp": "2026-05-25T10:08:57.469Z"
+        },
+        {
+          "id": 3,
+          "type": "milestone",
+          "message": "Streak level reached! 🔥",
+          "read": true,
+          "timestamp": "2026-05-25T09:08:57.469Z"
+        }
+      ],
+      "pointsHistory": [
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    },
+    "MBR-003": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "reminder",
+          "message": "Zumba class tomorrow at 7:00 AM",
+          "read": false,
+          "timestamp": "2026-05-25T11:08:57.469Z"
+        },
+        {
+          "id": 2,
+          "type": "offer",
+          "message": "Renew now and get 1 month free!",
+          "read": false,
+          "timestamp": "2026-05-25T10:08:57.469Z"
+        },
+        {
+          "id": 3,
+          "type": "milestone",
+          "message": "Streak level reached! 🔥",
+          "read": true,
+          "timestamp": "2026-05-25T09:08:57.469Z"
+        }
+      ],
+      "pointsHistory": [
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    },
+    "MBR-004": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "reminder",
+          "message": "Zumba class tomorrow at 7:00 AM",
+          "read": false,
+          "timestamp": "2026-05-25T11:08:57.469Z"
+        },
+        {
+          "id": 2,
+          "type": "offer",
+          "message": "Renew now and get 1 month free!",
+          "read": false,
+          "timestamp": "2026-05-25T10:08:57.469Z"
+        },
+        {
+          "id": 3,
+          "type": "milestone",
+          "message": "Streak level reached! 🔥",
+          "read": true,
+          "timestamp": "2026-05-25T09:08:57.469Z"
+        }
+      ],
+      "pointsHistory": [
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    },
+    "MBR-005": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "reminder",
+          "message": "Zumba class tomorrow at 7:00 AM",
+          "read": false,
+          "timestamp": "2026-05-25T11:08:57.469Z"
+        },
+        {
+          "id": 2,
+          "type": "offer",
+          "message": "Renew now and get 1 month free!",
+          "read": false,
+          "timestamp": "2026-05-25T10:08:57.469Z"
+        },
+        {
+          "id": 3,
+          "type": "milestone",
+          "message": "Streak level reached! 🔥",
+          "read": true,
+          "timestamp": "2026-05-25T09:08:57.469Z"
+        }
+      ],
+      "pointsHistory": [
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    },
+    "MBR-006": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "reminder",
+          "message": "Zumba class tomorrow at 7:00 AM",
+          "read": false,
+          "timestamp": "2026-05-25T11:08:57.469Z"
+        },
+        {
+          "id": 2,
+          "type": "offer",
+          "message": "Renew now and get 1 month free!",
+          "read": false,
+          "timestamp": "2026-05-25T10:08:57.469Z"
+        },
+        {
+          "id": 3,
+          "type": "milestone",
+          "message": "Streak level reached! 🔥",
+          "read": true,
+          "timestamp": "2026-05-25T09:08:57.469Z"
+        }
+      ],
+      "pointsHistory": [
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    },
+    "MBR-007": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "reminder",
+          "message": "Zumba class tomorrow at 7:00 AM",
+          "read": false,
+          "timestamp": "2026-05-25T11:08:57.469Z"
+        },
+        {
+          "id": 2,
+          "type": "offer",
+          "message": "Renew now and get 1 month free!",
+          "read": false,
+          "timestamp": "2026-05-25T10:08:57.469Z"
+        },
+        {
+          "id": 3,
+          "type": "milestone",
+          "message": "Streak level reached! 🔥",
+          "read": true,
+          "timestamp": "2026-05-25T09:08:57.469Z"
+        }
+      ],
+      "pointsHistory": [
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    },
+    "MBR-008": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "reminder",
+          "message": "Zumba class tomorrow at 7:00 AM",
+          "read": false,
+          "timestamp": "2026-05-25T11:08:57.469Z"
+        },
+        {
+          "id": 2,
+          "type": "offer",
+          "message": "Renew now and get 1 month free!",
+          "read": false,
+          "timestamp": "2026-05-25T10:08:57.469Z"
+        },
+        {
+          "id": 3,
+          "type": "milestone",
+          "message": "Streak level reached! 🔥",
+          "read": true,
+          "timestamp": "2026-05-25T09:08:57.469Z"
+        }
+      ],
+      "pointsHistory": [
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    },
+    "MBR-009": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "reminder",
+          "message": "Zumba class tomorrow at 7:00 AM",
+          "read": false,
+          "timestamp": "2026-05-25T11:08:57.469Z"
+        },
+        {
+          "id": 2,
+          "type": "offer",
+          "message": "Renew now and get 1 month free!",
+          "read": false,
+          "timestamp": "2026-05-25T10:08:57.469Z"
+        },
+        {
+          "id": 3,
+          "type": "milestone",
+          "message": "Streak level reached! 🔥",
+          "read": true,
+          "timestamp": "2026-05-25T09:08:57.469Z"
+        }
+      ],
+      "pointsHistory": [
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    },
+    "MBR-010": {
+      "bookings": [
+        {
+          "id": "BK-001",
+          "class": "Zumba Power",
+          "trainer": "Priya Sharma",
+          "date": "Tomorrow",
+          "time": "07:00 AM",
+          "status": "confirmed"
+        },
+        {
+          "id": "BK-002",
+          "class": "Weight Shred",
+          "trainer": "Rohan Mehta",
+          "date": "May 28, 2026",
+          "time": "06:30 AM",
+          "status": "confirmed"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "reminder",
+          "message": "Zumba class tomorrow at 7:00 AM",
+          "read": false,
+          "timestamp": "2026-05-25T11:08:57.469Z"
+        },
+        {
+          "id": 2,
+          "type": "offer",
+          "message": "Renew now and get 1 month free!",
+          "read": false,
+          "timestamp": "2026-05-25T10:08:57.469Z"
+        },
+        {
+          "id": 3,
+          "type": "milestone",
+          "message": "Streak level reached! 🔥",
+          "read": true,
+          "timestamp": "2026-05-25T09:08:57.469Z"
+        }
+      ],
+      "pointsHistory": [
+        {
+          "date": "2026-05-24",
+          "action": "Session Check-in",
+          "points": 10
+        },
+        {
+          "date": "2026-05-23",
+          "action": "Referral Bonus",
+          "points": 100
+        }
+      ]
+    }
+  },
+  "realtimeState": {
+    "liveVisitors": 72,
+    "maxCapacity": 80
+  },
+  "membershipDistribution": {
+    "premium": 181,
+    "standard": 118,
+    "basic": 95,
+    "trial": 33
+  }
+}
