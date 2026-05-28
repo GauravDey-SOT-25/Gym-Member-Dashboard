@@ -159,30 +159,31 @@ Example:
 
 <div align="center">
 
-| Contributor       | GitHub Profile                              |
-| ----------------- | ------------------------------------------- |
-| Anurag            | https://github.com/anurag-aj                |
-| Arpita Awasthi    | https://github.com/arpitaawasthi03          |
-| Ashish Anand      | https://github.com/ashishanand25-JSR        |
-| Ayush Singh       | https://github.com/Ayush-2-singh            |
-| Ayush Srivastava  | https://github.com/ayushsrivastava0159      |
-| Drop X Out        | https://github.com/Drop-X-Out               |
-| Eklavya Goel      | https://github.com/EKLAVYAGO                |
-| Gulam Ahmad       | https://github.com/GulamAhmad1810           |
-| Hrishabh          | https://github.com/Hrishabh1980             |
-| Karan Kamal       | https://github.com/kkarankkamal145-wq       |
-| Lakshya Singh     | https://github.com/lakshyasingh-1           |
-| Manish Rai        | https://github.com/ManishRai-gif            |
-| Mohd Fahad        | https://github.com/mohdfahad0408            |
-| Nishant Prajapati | https://github.com/Nishantprajapati441-byte |
-| Om Mishra         | https://github.com/Om-Mishra9451            |
-| Rashi Tiwari      | https://github.com/rashitiwari423-lgtm      |
-| Shashank Mishra   | https://github.com/Shashank726-mishra40     |
-| Taqi Niazi        | https://github.com/Taqi-Niazi               |
-| Shivendra         | https://github.com/tech-shivendra           |
-| Om                | https://github.com/techieomm                |
-| Yash              | https://github.com/Yash67-001               |
+| Contributor             | GitHub Profile                              |
+| ----------------------- | ------------------------------------------- |
+| Anurag Kumar Jaiswara   | https://github.com/anurag-aj                |
+| Arpita Awasthi          | https://github.com/arpitaawasthi03          |
+| Ashish Anand            | https://github.com/ashishanand25-JSR        |
+| Ayush Singh             | https://github.com/Ayush-2-singh            |
+| Ayush Srivastava        | https://github.com/ayushsrivastava0159      |
+| Usama Ameen             | https://github.com/Drop-X-Out               |
+| Eklavya Gond            | https://github.com/EKLAVYAGO                |
+| Gulam Ahmad             | https://github.com/GulamAhmad1810           |
+| Hrishabh Singh          | https://github.com/Hrishabh1980             |
+| Karan Kamal             | https://github.com/kkarankkamal145-wq       |
+| Lakshya Pratap Singh    | https://github.com/lakshyasingh-1           |
+| Manish Rai              | https://github.com/ManishRai-gif            |
+| Mohd Fahad              | https://github.com/mohdfahad0408            |
+| Nishant Kumar Prajapati | https://github.com/Nishantprajapati441-byte |
+| Om Mishra               | https://github.com/Om-Mishra9451            |
+| Rashi Tiwari            | https://github.com/rashitiwari423-lgtm      |
+| Shashank Mishra         | https://github.com/Shashank726-mishra40     |
+| Taqi Niazi              | https://github.com/Taqi-Niazi               |
+| Shivendra Pratap Singh  | https://github.com/tech-shivendra           |
+| Omm Prakash Lenka       | https://github.com/techieomm                |
+| Yash Malik              | https://github.com/Yash67-001               |
 </div>
+
 ---
 
 # 🎯 Future Improvements
